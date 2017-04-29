@@ -89,6 +89,31 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiply.setOnClickListener(opListener);
         buttonMinus.setOnClickListener(opListener);
         buttonPlus.setOnClickListener(opListener);
+
+        findViewById(R.id.buttonNeg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = newNumberEditText.getText().toString();
+                if(value.length() == 0)
+                {
+                    newNumberEditText.setText("-");
+                }
+                else
+                {
+                    try
+                    {
+                        Double doubleValue = Double.valueOf(value);
+                        doubleValue *= -1;
+                        newNumberEditText.setText(doubleValue.toString());
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        //new number  was " - " & " . " , so clear it
+                        newNumberEditText.setText("");
+                    }
+                }
+            }
+        });
     }
 
     @Override
